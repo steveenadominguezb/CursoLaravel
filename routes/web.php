@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,5 @@ Route::get('/usuarios/{id}', [UsuarioController::class, 'show'])->name('usuario-
 Route::patch('/usuarios/{id}', [UsuarioController::class, 'update'])->name('usuario-update');
 
 Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy'])->name('usuario-delete');
+
+Route::resource('categories', CategoriesController::class);
