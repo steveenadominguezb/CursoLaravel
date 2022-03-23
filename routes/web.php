@@ -20,3 +20,8 @@ Route::get('/', function () {
 
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios');
 Route::post('/usuarios', [UsuarioController::class, 'store'])->name('usuarios');
+
+Route::get('/usuarios/{id}', [UsuarioController::class, 'show'])->name('usuario-edit');
+Route::patch('/usuarios/{id}', [UsuarioController::class, 'update'])->name('usuario-update');
+
+Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy'])->name('usuario-delete');

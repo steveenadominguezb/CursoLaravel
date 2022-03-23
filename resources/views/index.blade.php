@@ -30,9 +30,16 @@
       @foreach ($usuarios as $usuario)
         <tr>
             <th scope="row">{{$usuario->id}}</th>
-            <td>{{$usuario->name}}</td>
+            <td><a href="{{ route('usuario-edit', ['id' => $usuario->id]) }}">{{$usuario->name}}</a></td>
             <td>{{$usuario->created_at}}</td>
             <td>{{$usuario->updated_at}}</td>
+            <td>
+                <form action="{{ route('usuario-delete', [$usuario->id]) }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
         </tr>
       @endforeach
   </tbody>

@@ -11,7 +11,7 @@ class UsuarioController extends Controller
      * index para mostrar todos los elementos
      * store para guardar un elemento
      * update para actualizar
-     * detroy para eliminar
+     * destroy para eliminar
      * edit para mostrar el formulario de edición
      */
 
@@ -30,5 +30,23 @@ class UsuarioController extends Controller
     public function index(){
         $usuarios = usuario::all();
         return view('index', ['usuarios' => $usuarios]);
+    }
+    public function show($id){
+        $usuario = usuario::find($id);
+        return view('show', ['usuario' => $usuario]);
+    }
+    public function destroy($id){
+        $usuario = usuario::find($id);
+        $usuario->delete();
+
+        return redirect()->route('usuarios')->with('success', 'Registro eliminado');
+
+    }
+    public function update($id, Request $request){
+        $usuario = usuario::find($id);
+        $usuario->name = $request->name;
+        $usuario->save();
+        //return view('index', ['success' => 'Registro actualizado']);
+        return redirect()->route('usuarios')->with('success', 'Registro actualizado');
     }
 }
